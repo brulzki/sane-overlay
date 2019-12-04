@@ -177,15 +177,6 @@ src_prepare() {
 	# From Arch
 	eapply "${FILESDIR}"/${PN}-1.0.27-network.patch
 
-	# From Fedora
-	# Fix https://bugs.gentoo.org/635348
-	eapply "${FILESDIR}"/${PN}-1.0.27-canon-lide-100.patch
-	# Fix https://bugs.gentoo.org/653300
-	eapply "${FILESDIR}"/${PN}-1.0.27-revert-samsung.patch
-
-	# From Debian
-	eapply "${FILESDIR}"/${PN}-1.0.27-uninitialized-variable.patch
-
 	# Fix for "make check".  Upstream sometimes forgets to update this.
 	local ver=$(./configure --version | awk '{print $NF; exit 0}')
 	sed -i \
