@@ -4,6 +4,16 @@
 EAPI=7
 inherit flag-o-matic multilib-minimal systemd toolchain-funcs udev user
 
+DESCRIPTION="Scanner Access Now Easy - Backends"
+HOMEPAGE="http://www.sane-project.org/"
+#MY_P="${P}"
+#FRS_ID="4224"
+SRC_URI="https://gitlab.com/sane-project/backends/uploads/9e718daff347826f4cfe21126c8d5091/sane-backends-1.0.28.tar.gz"
+
+LICENSE="GPL-2 public-domain"
+SLOT="0"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-linux ~x86-linux"
+
 # gphoto and v4l are handled by their usual USE flags.
 # The pint backend was disabled because I could not get it to compile.
 IUSE_SANE_BACKENDS="
@@ -113,16 +123,6 @@ REQUIRED_USE="
 	sane_backends_mustek_usb2? ( threads )
 	sane_backends_kvs40xx? ( threads )
 "
-
-DESCRIPTION="Scanner Access Now Easy - Backends"
-HOMEPAGE="http://www.sane-project.org/"
-MY_P="${P}"
-FRS_ID="4224"
-SRC_URI="https://alioth.debian.org/frs/download.php/file/${FRS_ID}/${P}.tar.gz"
-
-LICENSE="GPL-2 public-domain"
-SLOT="0"
-KEYWORDS="alpha amd64 arm arm64 hppa ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-linux ~x86-linux"
 
 RDEPEND="
 	sane_backends_dc210? ( >=virtual/jpeg-0-r2:0=[${MULTILIB_USEDEP}] )
