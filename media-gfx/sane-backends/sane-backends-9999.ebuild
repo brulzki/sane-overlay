@@ -9,13 +9,13 @@ HOMEPAGE="http://www.sane-project.org/"
 MY_P="${P}"
 
 if [[ ${PV} = 9999 ]]; then
-	inherit git-r3
-	EGIT_REPO_URI="git://git.debian.org/git/sane/sane-backends.git"
+	inherit autotools git-r3
+	EGIT_REPO_URI="https://gitlab.com/sane-project/backends.git"
 	KEYWORDS=""
-else
-	FRS_ID="4224"
-	SRC_URI="https://alioth.debian.org/frs/download.php/file/${FRS_ID}/${P}.tar.gz"
-	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-linux ~x86-linux"
+#else
+#	FRS_ID="4224"
+#	SRC_URI="https://alioth.debian.org/frs/download.php/file/${FRS_ID}/${P}.tar.gz"
+#	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-linux ~x86-linux"
 fi
 
 LICENSE="GPL-2 public-domain"
@@ -155,6 +155,7 @@ RDEPEND="
 
 DEPEND="${RDEPEND}
 	v4l? ( sys-kernel/linux-headers )
+	sys-devel/autoconf-archive
 	>=sys-devel/gettext-0.18.1
 	>=virtual/pkgconfig-0-r1[${MULTILIB_USEDEP}]
 "
@@ -185,10 +186,11 @@ src_prepare() {
 	eapply "${FILESDIR}"/${PN}-1.0.27-network.patch
 
 	# Fix for "make check".  Upstream sometimes forgets to update this.
-	local ver=$(./configure --version | awk '{print $NF; exit 0}')
+	#local ver=$(./configure --version | awk '{print $NF; exit 0}')
 	sed -i \
 		-e "/by sane-desc 3.5 from sane-backends/s:sane-backends .*:sane-backends ${ver}:" \
 		testsuite/tools/data/html* || die
+	AT_NOELIBTOOLIZE=yes eautoreconf
 }
 
 src_configure() {
@@ -317,7 +319,7 @@ multilib_src_install_all() {
 		newdoc tools/hotplug/README README.hotplug
 	fi
 
-	dodoc NEWS AUTHORS ChangeLog* PROBLEMS README README.linux
+	dodoc NEWS AUTHORS PROBLEMS README README.linux
 	find "${D}" -name '*.la' -delete || die
 
 	if use xinetd; then

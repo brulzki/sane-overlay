@@ -21,3 +21,12 @@ Then run this command to download the overlay:
 ```
 emaint sync -r sane-overlay
 ```
+
+live ebuild
+-----------
+
+Install the latest git development version
+
+```
+ACCEPT_KEYWORDS="**" emerge -1 =media-gfx/sane-backends-9999
+```
