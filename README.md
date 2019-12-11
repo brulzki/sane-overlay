@@ -22,6 +22,13 @@ Then run this command to download the overlay:
 emaint sync -r sane-overlay
 ```
 
+### Alternative
+
+Using layman:
+```
+layman -o https://raw.github.com/brulzki/sane-overlay/master/repository.xml -f -a sane-overlay
+```
+
 live ebuild
 -----------
 
