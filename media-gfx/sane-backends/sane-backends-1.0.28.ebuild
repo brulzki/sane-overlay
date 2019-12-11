@@ -41,6 +41,7 @@ IUSE_SANE_BACKENDS="
 	epjitsu
 	epson
 	epson2
+	epsonds
 	fujitsu
 	genesys
 	gt68xx
@@ -75,12 +76,14 @@ IUSE_SANE_BACKENDS="
 	niash
 	p5
 	pie
+	pieusb
 	pixma
 	plustek
 	plustek_pp
 	pnm
 	qcam
 	ricoh
+	ricoh2
 	rts8891
 	s9036
 	sceptre
@@ -134,6 +137,7 @@ RDEPEND="
 	sane_backends_canon_pp? ( >=sys-libs/libieee1284-0.2.11-r3[${MULTILIB_USEDEP}] )
 	sane_backends_hpsj5s? ( >=sys-libs/libieee1284-0.2.11-r3[${MULTILIB_USEDEP}] )
 	sane_backends_mustek_pp? ( >=sys-libs/libieee1284-0.2.11-r3[${MULTILIB_USEDEP}] )
+	sane_backends_pixma? ( >=virtual/jpeg-0-r2:0=[${MULTILIB_USEDEP}] )
 	usb? ( >=virtual/libusb-1-r1:1=[${MULTILIB_USEDEP}] )
 	gphoto2? (
 		>=media-libs/libgphoto2-2.5.3.1:=[${MULTILIB_USEDEP}]
