@@ -6,6 +6,18 @@ A gentoo overlay containing updated sane-backends.
 Installing
 ----------
 
+Using eselect repository:
+```
+eselect repository add sane-overlay git https://github.com/brulzki/sane-overlay.git
+```
+
+Using layman:
+```
+layman -o https://raw.github.com/brulzki/sane-overlay/master/repository.xml -f -a sane-overlay
+```
+
+### Manual install
+
 Add the following file at /etc/portage/repos.conf/sane-overlay.conf
 
 ```
@@ -20,13 +32,6 @@ Then run this command to download the overlay:
 
 ```
 emaint sync -r sane-overlay
-```
-
-### Alternative
-
-Using layman:
-```
-layman -o https://raw.github.com/brulzki/sane-overlay/master/repository.xml -f -a sane-overlay
 ```
 
 live ebuild
